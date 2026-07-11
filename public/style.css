@@ -1,0 +1,165 @@
+:root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --panel-2: #1c2129;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-dim: #8b949e;
+    --primary: #2f81f7;
+    --success: #238636;
+    --danger: #f85149;
+    --radius: 10px;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* Explicit — do not rely on the browser default alone. */
+.app[hidden],
+.login-screen[hidden] {
+    display: none !important;
+}
+
+/* ---------- LOGIN ---------- */
+.login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.login-card {
+    width: 100%;
+    max-width: 360px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    text-align: center;
+}
+.login-card h1 { margin: 0 0 4px; font-size: 1.6rem; color: var(--primary); }
+.login-card .subtitle { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 22px; }
+.login-card .field { text-align: left; margin-bottom: 14px; }
+.login-card button { width: 100%; justify-content: center; margin-top: 6px; }
+
+.error-box {
+    background: rgba(248, 81, 73, 0.12);
+    border: 1px solid rgba(248, 81, 73, 0.4);
+    color: var(--danger);
+    font-size: 0.85rem;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    text-align: left;
+}
+
+/* ---------- LAYOUT ---------- */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+}
+.brand { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+.brand-sub { font-size: 0.8rem; font-weight: 400; color: var(--text-dim); margin-left: 8px; }
+.main { max-width: 900px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+}
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.card h2 { margin: 0; font-size: 1.1rem; }
+
+/* ---------- FIELDS / FORMS ---------- */
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 0.82rem; color: var(--text-dim); margin-bottom: 6px; }
+.field input[type="text"],
+.field input[type="password"] {
+    width: 100%;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 0.92rem;
+}
+.field input[type="file"] {
+    width: 100%;
+    background: var(--panel-2);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 14px 12px;
+    color: var(--text-dim);
+}
+.hint { font-size: 0.78rem; color: var(--text-dim); margin-top: 6px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.form-grid .full { grid-column: 1 / -1; }
+.form-actions { display: flex; gap: 10px; margin-top: 10px; }
+
+/* ---------- BUTTONS ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    cursor: pointer;
+}
+.btn:hover { border-color: var(--text-dim); }
+.btn-primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+.btn-success { background: var(--success); border-color: var(--success); color: #fff; }
+.btn-danger { background: transparent; border-color: var(--danger); color: var(--danger); }
+.btn-ghost { background: transparent; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---------- PROJECT LIST ---------- */
+.project-list { display: flex; flex-direction: column; gap: 10px; }
+.project-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+}
+.project-row .info strong { display: block; }
+.project-row .info span { font-size: 0.8rem; color: var(--text-dim); }
+.project-row .actions { display: flex; gap: 8px; }
+.empty-state { color: var(--text-dim); font-size: 0.9rem; padding: 20px 0; text-align: center; }
+
+/* ---------- PUSH PANEL ---------- */
+.file-summary {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+}
+.terminal {
+    background: #010409;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'SF Mono', Consolas, monospace;
+    font-size: 0.82rem;
+    color: #7ee787;
+    white-space: pre-wrap;
+    max-height: 320px;
+    overflow-y: auto;
+    margin-top: 14px;
+}

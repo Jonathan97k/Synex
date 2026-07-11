@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Synex — Deploy Console</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="loginScreen">
+    <form class="login-card" id="form-login">
+        <h1>Synex</h1>
+        <p class="subtitle">Deploy Console — sign in to continue.</p>
+        <div class="field">
+            <label>Username</label>
+            <input type="text" name="username" autocomplete="username" required autofocus>
+        </div>
+        <div class="field">
+            <label>Password</label>
+            <input type="password" name="password" autocomplete="current-password" required>
+        </div>
+        <div id="loginError" class="error-box" hidden></div>
+        <button type="submit" class="btn btn-primary" id="btnLogin">Log In</button>
+    </form>
+</div>
+
+<!-- APP -->
+<div class="app" id="appShell" hidden>
+    <header class="topbar">
+        <div class="brand">Synex <span class="brand-sub">Deploy Console</span></div>
+        <button id="btnLogout" class="btn btn-ghost">Log Out</button>
+    </header>
+
+    <main class="main">
+        <!-- PROJECT LIST -->
+        <section class="card">
+            <div class="card-header">
+                <h2>Projects</h2>
+                <button id="btnNewProject" class="btn btn-primary">+ New Project</button>
+            </div>
+            <div id="projectList" class="project-list"></div>
+        </section>
+
+        <!-- NEW / EDIT PROJECT FORM (hidden until needed) -->
+        <section class="card" id="projectFormCard" hidden>
+            <h2 id="projectFormTitle">New Project</h2>
+            <form id="form-project">
+                <input type="hidden" name="id">
+                <div class="form-grid">
+                    <div class="field">
+                        <label>Project name</label>
+                        <input type="text" name="name" placeholder="Enifa Uniform Shop" required>
+                    </div>
+                    <div class="field">
+                        <label>GitHub owner / org</label>
+                        <input type="text" name="owner" placeholder="Jonathan97k" required>
+                    </div>
+                    <div class="field">
+                        <label>Repo name</label>
+                        <input type="text" name="repo" placeholder="Enifa-website" required>
+                    </div>
+                    <div class="field">
+                        <label>Branch</label>
+                        <input type="text" name="branch" placeholder="main" value="main">
+                    </div>
+                    <div class="field full">
+                        <label>Notes (optional)</label>
+                        <input type="text" name="notes" placeholder="Live at enifa-website.vercel.app">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Project</button>
+                    <button type="button" id="btnCancelProjectForm" class="btn btn-ghost">Cancel</button>
+                    <button type="button" id="btnDeleteProject" class="btn btn-danger" hidden>Delete Project</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- PUSH PANEL -->
+        <section class="card" id="pushCard" hidden>
+            <div class="card-header">
+                <h2>Push to <span id="pushProjectName"></span></h2>
+                <button id="btnClosePush" class="btn btn-ghost">Close</button>
+            </div>
+
+            <div class="field">
+                <label>Select the project folder from your computer</label>
+                <input type="file" id="folderInput" webkitdirectory directory multiple>
+                <div class="hint">Pick the same folder you'd normally run <code>git push</code> from.</div>
+            </div>
+
+            <div id="fileSummary" class="file-summary" hidden></div>
+
+            <div class="field">
+                <label>Files/paths to delete from the repo (optional, comma-separated)</label>
+                <input type="text" id="deletePaths" placeholder="old-file.js, images/unused.png">
+            </div>
+
+            <div class="field">
+                <label>Commit message</label>
+                <input type="text" id="commitMessage" value="Update via Synex">
+            </div>
+
+            <div class="form-actions">
+                <button id="btnPush" class="btn btn-success">Push to GitHub</button>
+            </div>
+
+            <div id="pushLog" class="terminal">Select a folder above, then click "Push to GitHub".</div>
+        </section>
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
